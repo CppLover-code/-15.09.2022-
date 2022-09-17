@@ -1,10 +1,16 @@
-﻿// Задание 1. Калькулятор
+﻿/*Задание 1. Калькулятор
+* Создайте приложение калькулятор. Необходимо поддерживать операции '+','-','*','/'
+* Реализовать меню без использования операторов if и switch c помощью массива
+* указателей на функции.
+*/ 
 
 #include <iostream>
+#include <windows.h>
 using namespace std;
 
-typedef float(*calc) (float, float);
+typedef float(*calc) (float, float);  // псевдоним указатель на float fun(float,float)
 
+// 4 функции, выполняющшие операции ('+','-','*','/') над операндами, введенными пользователем
 
 float add(float x, float y)
 {
@@ -29,7 +35,7 @@ float divide(float x, float y)
 }
 
 size_t p = 4;
-calc* oper = new calc[p]{ add, sub, multiply, divide };
+calc* oper = new calc[p]{ add, sub, multiply, divide };   // массив указателей на функции операций калькулятора
 
 int main()
 {
@@ -51,20 +57,28 @@ int main()
 
     cout << " Result: " << oper[numb](x, y) << "\n";
   
+    Sleep(1000);
+    system("cls");
+    main();
+
     delete[] oper;
 
     return 0;
 }
 
-//// Задание 2. Первый вариант
+///*Задание 2. Первый вариант
+//* Написать программу, которая содержит функцию, которая принимает как аргумент 
+//* указатели на три массива и размер массивов, вносит в третий массив суммы
+//* элементов двух массивов. Размер массивов одинаковый.
+//*/
 //
 //#include <iostream>
 //#include <ctime>
 //
 //using namespace std;
 //
-//typedef int(*oper_t) (int*, int*, int*, size_t, size_t);
-//int random(int* arr, size_t length)
+//typedef int(*oper_t) (int*, int*, int*, size_t, size_t);  // псевдоним указатель на int funс(int*, int*, int*, size_t, size_t)
+//int random(int* arr, size_t length)   // функция заполнения массивов
 //{
 //    for (size_t i = 0; i < length; i++)
 //    {
@@ -79,20 +93,20 @@ int main()
 //
 //    return arr[length];
 //}
-//int func(int* ar1, int* ar2, int* ar3, size_t k, size_t v)
+//int func(int* ar1, int* ar2, int* ar3, size_t k, size_t v)   // функция суммирует все элементы каждого массива, вносит суммы в третий массив
 //{
 //    int sum1 = 0, sum2 = 0;
 //
-//    for (size_t i = 0; i < v; )
+//    for (size_t i = 0; i < v; )   // цикл, перебирающий эл-ты ar3
 //    {
-//        for (size_t x = 0; x < k; x++)
+//        for (size_t x = 0; x < k; x++)   // цикл, перебирающий эл-ты ar1
 //        {
 //            sum1 += ar1[x];
 //        }
 //        ar3[i] = sum1;
 //        i++;
 //
-//        for (size_t y = 0; y < k; y++)
+//        for (size_t y = 0; y < k; y++)   // цикл, перебирающий эл-ты ar2
 //        {
 //            sum2 += ar2[y];
 //        }
@@ -124,6 +138,7 @@ int main()
 // 
 //    cout << "\n Array C: ";
 //    for (size_t i = 0; i < v; i++) cout << C[i] << " ";
+//    cout << "\n";
 //
 //    delete[] A;
 //    delete[] B;
@@ -139,8 +154,8 @@ int main()
 //
 //using namespace std;
 //
-//typedef int(*oper_t) (int*, int*, int*, size_t);
-//int random(int* arr, size_t length)
+//typedef int(*oper_t) (int*, int*, int*, size_t);   // псевдоним указатель на int funс(int*, int*, int*, size_t)
+//int random(int* arr, size_t length)   // функция заполнения массивов
 //{
 //    for (size_t i = 0; i < length; i++)
 //    {
@@ -155,15 +170,15 @@ int main()
 //
 //    return arr[length];
 //}
-//int func(int* ar1, int* ar2, int* ar3, size_t k)
+//int func(int* ar1, int* ar2, int* ar3, size_t k)   // функция суммирует элементы 2 массивов по индексам, вносит суммы в третий массив
 //{
 //    int sum = 0;
 //
-//    for (size_t i = 0; i < k; )
+//    for (size_t i = 0; i < k; )   // цикл, перебирающий эл-ты ar3
 //    {
-//        for (size_t x = 0; x < k; x++)
+//        for (size_t x = 0; x < k; x++)   // цикл, перебирающий эл-ты ar1
 //        {
-//            for (size_t y = x; y < k; )
+//            for (size_t y = x; y < k; )   // цикл, перебирающий эл-ты ar2
 //            {
 //                sum = ar1[x] + ar2[y];
 //                ar3[i] = sum;
@@ -172,7 +187,6 @@ int main()
 //            }
 //        }
 //    }
-//    //cout << " SUM1 " << sum1 << " SUM2 " << sum2 << "\n";
 //    return ar3[k];
 //}
 //
@@ -196,10 +210,8 @@ int main()
 //    operation(A, B, C, k);
 //
 //    cout << "\n Array C: ";
-//    for (size_t i = 0; i < k; i++)
-//    {
-//        cout << C[i] << " ";
-//    }
+//    for (size_t i = 0; i < k; i++) cout << C[i] << " ";
+//    cout << "\n";
 //
 //    delete[] A;
 //    delete[] B;
